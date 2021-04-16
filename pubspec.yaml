@@ -22,8 +22,10 @@ environment:
 
 dependencies:
   provider: ^5.0.0
+  dio: ^4.0.0
   google_fonts: ^2.0.0
   responsive: ^0.2.8+3
+  http: ^0.13.1
   flutter:
     sdk: flutter
 

@@ -1,5 +1,5 @@
 import 'package:fleet_sigma/mobile/login.dart';
-import 'package:fleet_sigma/web/login.dart';
+import 'package:fleet_sigma/web/loginWebView.dart';
 import 'package:flutter/material.dart';
 
 void main() {
