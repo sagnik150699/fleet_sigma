@@ -1,5 +1,7 @@
 import 'package:fleet_sigma/services/variable.dart';
-import 'package:fleet_sigma/web/loginWebModel.dart';
+import 'package:fleet_sigma/web/admin/adminWebView.dart';
+import 'package:fleet_sigma/web/loginWebViewModel.dart';
+import 'package:fleet_sigma/web/userWebView.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:dio/dio.dart';
@@ -14,7 +16,7 @@ class _LoginPageWebState extends State<LoginPageWeb> {
   TextEditingController _emailField = TextEditingController();
   TextEditingController _passwordField = TextEditingController();
   Variable _variable = new Variable();
-  LoginWebModel _loginWebModel = new LoginWebModel();
+  LoginWebViewModel _loginWebModel = new LoginWebViewModel();
 
   @override
   Widget build(BuildContext context) {
@@ -25,8 +27,8 @@ class _LoginPageWebState extends State<LoginPageWeb> {
       appBar: AppBar(
         centerTitle: true,
         backgroundColor: Colors.black,
-        title:
-            _variable.text("Fleet Sigma", 30.0, Colors.white, FontWeight.bold),
+        title: _variable.textPoppins(
+            "Fleet Sigma", 30.0, Colors.white, FontWeight.bold),
       ),
       body: Center(
         child: SizedBox(
@@ -36,7 +38,7 @@ class _LoginPageWebState extends State<LoginPageWeb> {
             children: [
               Icon(
                 Icons.anchor_outlined,
-                size: 100.0,
+                size: 150.0,
               ),
               SizedBox(height: categoryHeight / 20),
               TextFormField(
@@ -85,11 +87,23 @@ class _LoginPageWebState extends State<LoginPageWeb> {
                       ),
                       borderRadius: BorderRadius.circular(10.0)),
                   color: Colors.black,
-                  child: _variable.text(
+                  child: _variable.textPoppins(
                       "LOGIN", 25.0, Colors.white, FontWeight.bold),
                   onPressed: () async {
                     final user = await _loginWebModel.loginJson(
                         _emailField.text, _passwordField.text);
+                    if (user == 2)
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => AdminWebView()),
+                      );
+                    else if(user == 3){
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => UserWebView()),
+                      );
+                    }
+                    else _variable.scaffoldMessenger(context, "Invalid Credentials");
                   },
                 ),
               ),

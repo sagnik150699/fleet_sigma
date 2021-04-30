@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class Variable {
-  Text text(str, size, colour, weight) {
+  Text textPoppins(str, size, colour, weight) {
     return Text(
       str,
       textAlign: TextAlign.left,
@@ -28,5 +28,12 @@ class Variable {
             fontWeight: weight),
       ),
     );
+  }
+  void scaffoldMessenger(BuildContext context, String title) {
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+      backgroundColor: Colors.black,
+      content: textPoppins(
+          title, 18.0, Colors.white, FontWeight.w500),
+    ));
   }
 }
