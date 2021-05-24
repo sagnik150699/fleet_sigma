@@ -26,7 +26,7 @@ class _MyAppState extends State<MyApp> {
             if (constraints.maxWidth > 600) {
               return VesselInformationView();
             } else
-              return UserWebView();
+              return VesselInformationView();
           },
         ),
       ),
