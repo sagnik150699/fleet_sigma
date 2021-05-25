@@ -6,20 +6,17 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:provider/provider.dart';
 
-class VesselInformationView extends StatefulWidget {
-  const VesselInformationView({Key key}) : super(key: key);
-
-  @override
-  _VesselInformationViewState createState() => _VesselInformationViewState();
-}
-
-class _VesselInformationViewState extends State<VesselInformationView> {
+class VesselInformationView extends HookWidget {
   @override
   Widget build(BuildContext context) {
     final UserInformation _userInformation =
         Provider.of<UserInformation>(context);
     Variable _variable = new Variable();
-    _userInformation.vesselInformation();
+    // int start = _userInformation.vesselListStart;
+    // int end = _userInformation.vesselListEnd;
+    int start = 0;
+    int end = 10;
+    _userInformation.vesselInformation(start.toString(), end.toString());
     List<DataRow> dataRowList = [];
     for (int i = 0; i < _userInformation.vesselInformationModel.length; i++) {
       dataRowList.add(DataRow(
@@ -119,37 +116,61 @@ class _VesselInformationViewState extends State<VesselInformationView> {
                     ),
                   ],
                 ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    IconButton(
+                        icon: Icon(Icons.chevron_left, size: 40.0),
+                        onPressed: () {
+                          // if (start != 0) {
+                          //   start = start - 10;
+                          // }
+                        }),
+                    IconButton(
+                        icon: Icon(Icons.chevron_right, size: 40.0),
+                        onPressed: () {
+                          // end = end - 10;
+                        }),
+                    _variable.textPoppins("  ${start.toString()}", 16.0,
+                        Colors.black, FontWeight.normal),
+                    SizedBox(width: 20.0),
+                    SizedBox(
+                        child: _variable.textPoppins(
+                            "  to  ", 16.0, Colors.black, FontWeight.normal)),
+                    _variable.textPoppins("${end.toString()}   ", 16.0,
+                        Colors.black, FontWeight.normal)
+                  ],
+                ),
                 SizedBox(height: 30),
-                // Container(child: Text("$id")),
                 Center(
                   child: SingleChildScrollView(
                     child: SingleChildScrollView(
                       scrollDirection: Axis.horizontal,
                       child: DataTable(
-                          showBottomBorder: true,
-                          columns: [
-                            DataColumn(
-                                label: _variable.textPoppins("Vessel Name",
-                                    18.0, Colors.black, FontWeight.w500)),
-                            DataColumn(
-                                label: _variable.textPoppins("DWT", 18.0,
-                                    Colors.black, FontWeight.w500)),
-                            DataColumn(
-                                label: _variable.textPoppins("Draft", 18.0,
-                                    Colors.black, FontWeight.w500)),
-                            DataColumn(
-                                label: _variable.textPoppins("Owner", 18.0,
-                                    Colors.black, FontWeight.w500)),
-                            DataColumn(
-                                label: _variable.textPoppins("Ship Country",
-                                    18.0, Colors.black, FontWeight.w500)),
-                            DataColumn(
-                                label: _variable.textPoppins("Edit", 18.0,
-                                    Colors.black, FontWeight.w500))
-                          ],
-                          rows: dataRowList
-                          // rows: dataRowList,
-                          ),
+                        showBottomBorder: true,
+                        columns: [
+                          DataColumn(
+                              label: _variable.textPoppins("Vessel Name", 18.0,
+                                  Colors.black, FontWeight.w500)),
+                          DataColumn(
+                              label: _variable.textPoppins(
+                                  "DWT", 18.0, Colors.black, FontWeight.w500)),
+                          DataColumn(
+                              label: _variable.textPoppins("Draft", 18.0,
+                                  Colors.black, FontWeight.w500)),
+                          DataColumn(
+                              label: _variable.textPoppins("Owner", 18.0,
+                                  Colors.black, FontWeight.w500)),
+                          DataColumn(
+                              label: _variable.textPoppins("Ship Country", 18.0,
+                                  Colors.black, FontWeight.w500)),
+                          DataColumn(
+                              label: _variable.textPoppins(
+                                  "Edit", 18.0, Colors.black, FontWeight.w500))
+                        ],
+                        rows: dataRowList,
+                      ),
                     ),
                   ),
                 ),

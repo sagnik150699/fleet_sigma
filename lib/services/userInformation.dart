@@ -14,21 +14,29 @@ class UserInformation extends ChangeNotifier {
     notifyListeners();
   }
 
-  bool _isLoading=true;
+  bool _isLoading = true;
   bool get isLoading => _isLoading;
   set isLoading(bool loading) {
     notifyListeners();
   }
 
   //vessel Information
+  int _vesselListStart=0;
+  int _vesselListEnd=10;
+  int get vesselListStart => _vesselListStart;
+  int get vesselListEnd => _vesselListEnd;
+  set vesselListStart(int val)=> notifyListeners();
+  set vesselListEnd(int val) =>  notifyListeners();
   List<VesselInformationModel> _vesselInformationModel = [];
   List<VesselInformationModel> get vesselInformationModel =>
       _vesselInformationModel;
-  vesselInformation() async {
+  vesselInformation(String start, String end) async {
+    _isLoading = true;
+    notifyListeners();
     VesselInformationRepository _vesselRepository =
         new VesselInformationRepository();
-    _vesselInformationModel = await _vesselRepository.getAllVessels("0", "100");
-    _isLoading=false;
+    _vesselInformationModel = await _vesselRepository.getAllVessels(start, end);
+    _isLoading = false;
     notifyListeners();
   }
 }
