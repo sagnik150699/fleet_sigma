@@ -8,26 +8,27 @@ class UserInformation extends ChangeNotifier {
   set token(String val) {
     notifyListeners();
   }
+
   putToken(String val) {
     _token = val;
     notifyListeners();
   }
 
-
-
-
+  bool _isLoading=true;
+  bool get isLoading => _isLoading;
+  set isLoading(bool loading) {
+    notifyListeners();
+  }
 
   //vessel Information
-  List<VesselInformationModel> _vesselInformationModel=[];
-  List<VesselInformationModel> get vesselInformationModel  => _vesselInformationModel;
-
-  // set vesselInformationModel(VesselInformationModel val) {
-  //   notifyListeners();
-  // }
-
-   vesselInformation() async{
-    VesselInformationRepository _vesselRepository = new VesselInformationRepository();
-    _vesselInformationModel= await _vesselRepository.getAllVessels();
+  List<VesselInformationModel> _vesselInformationModel = [];
+  List<VesselInformationModel> get vesselInformationModel =>
+      _vesselInformationModel;
+  vesselInformation() async {
+    VesselInformationRepository _vesselRepository =
+        new VesselInformationRepository();
+    _vesselInformationModel = await _vesselRepository.getAllVessels("0", "100");
+    _isLoading=false;
     notifyListeners();
   }
 }

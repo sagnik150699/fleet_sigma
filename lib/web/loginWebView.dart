@@ -6,12 +6,12 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:dio/dio.dart';
 
-class LoginPageWeb extends StatefulWidget {
+class LoginPageWebView extends StatefulWidget {
   @override
-  _LoginPageWebState createState() => _LoginPageWebState();
+  _LoginPageWebViewState createState() => _LoginPageWebViewState();
 }
 
-class _LoginPageWebState extends State<LoginPageWeb> {
+class _LoginPageWebViewState extends State<LoginPageWebView> {
   Dio dio = new Dio();
   TextEditingController _emailField = TextEditingController();
   TextEditingController _passwordField = TextEditingController();

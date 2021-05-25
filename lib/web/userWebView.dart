@@ -2,6 +2,7 @@ import 'package:fleet_sigma/services/variable.dart';
 import 'package:flutter/material.dart';
 
 import 'admin/adminWebView.dart';
+import 'vessel_information/vessle_information_view.dart';
 
 class UserWebView extends StatefulWidget {
   @override
@@ -69,7 +70,7 @@ class _UserWebViewState extends State<UserWebView> {
                 onPressed: () async {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => AdminWebView()),
+                    MaterialPageRoute(builder: (context) => VesselInformationView()),
                   );
                 },
               ),

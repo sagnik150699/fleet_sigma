@@ -5,7 +5,7 @@ class LoginWebViewModel {
   Dio dio = new Dio();
   UserInformation _information = new UserInformation();
   Future loginJson(String email, String password) async {
-    String url = "http://54.221.198.168:8083/api/v1/auth/login";
+    String url = "http://fleetsigma.psychoin.icu/api/v1/auth/login";
 
     var response = await dio.post(
       url,
